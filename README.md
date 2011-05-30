@@ -30,6 +30,6 @@ Usage:
 Reporting Issues
 --------
 
-If you have bugs or other issues, file them [here][issues].
+If you have bugs or other issues, file them [issues].
 
 
