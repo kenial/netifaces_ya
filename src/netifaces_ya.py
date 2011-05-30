@@ -55,7 +55,6 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
         a_interface = None
         interface_name = None
         netifaces_ya.__host_info["platform"] = sys.platform
-        netifaces_ya.__host_info["platform"] = 'nt'
         if(netifaces_ya.__host_info["platform"] == 'darwin'):
             # warning : review for another version of Mac OS X needed!
             # if(platform.mac_ver()[0] == "10.6.7"):
