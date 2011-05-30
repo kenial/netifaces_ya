@@ -5,7 +5,7 @@ Provides network interface information by simple methods.
 Network interface name, 'activated' interface`s IP address, netmask, MAC address and broadcast IP are provided. 
 
 This pure python module is for providing network interface information instantly.
-Basically, similar to [netfifaces]http://pypi.python.org/pypi/netifaces .
+Basically, similar to [netifaces](http://pypi.python.org/pypi/netifaces).
 
 
 Supports Mac OS X and Windows.
@@ -30,6 +30,6 @@ Usage:
 Reporting Issues
 --------
 
-If you have bugs or other issues, file them [here][issues].
+If you have bugs or other issues, file them [issues](https://github.com/kenial/netifaces_ya/issues).
 
 
