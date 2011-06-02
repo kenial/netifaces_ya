@@ -1,11 +1,12 @@
-# netifaces_ya (netifaces Yet Another ver.) 0.01
+#! /usr/bin/env python
+#encoding:UTF-8
+
+# netifaces_ya (netifaces Yet Another ver.)
 #
 # Created on May 28, 2011
 # @author: kenial (keniallee-NOSPAM-PLEASE@gmail.com)
 
 
-#! /usr/bin/env python
-#encoding:UTF-8
 
 '''
 Provides network interface information by simple methods.
@@ -264,13 +265,14 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
     def get_active_mac_addresses(separator = '-'):
         '''MAC address separator in UNIX is ':', while it is '-' in NT. '-' is default separator for this.'''
         active_mac_addresses = []
+        active_interfaces = netifaces_ya.get_active_interfaces()
         if(netifaces_ya.__host_info["platform"] == 'darwin'):
-            for interface_name in netifaces_ya.get_active_interfaces():
+            for interface_name in active_interfaces:
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 if(interface_info.has_key('ether')):
                     active_mac_addresses.append(interface_info['ether'].replace(':',separator))
         elif(netifaces_ya.__host_info["platform"] == 'nt'):
-            for interface_name in netifaces_ya.get_active_interfaces():
+            for interface_name in active_interfaces:
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 if(interface_info.has_key('Physical Address')):
                     active_mac_addresses.append(interface_info['Physical Address'].replace('-',separator))
