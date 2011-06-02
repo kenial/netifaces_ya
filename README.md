@@ -14,6 +14,8 @@ Supports Mac OS X and Windows.
 
 Usage:
 
+    from netifaces_ya import netifaces_ya
+
     # 'xxx_first_xxx' method is returning only one item, as following
     print netifaces_ya.get_active_first_IP()
 
