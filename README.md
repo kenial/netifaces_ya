@@ -35,3 +35,7 @@ Reporting Issues
 If you have bugs or other issues, file them [issues](https://github.com/kenial/netifaces_ya/issues).
 
 
+Version history
+--------
+0.11 Fix a bug about platform detect code.
+0.1 First version

@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#encoding:UTF-8
+#encoding:utf-8
 
 # netifaces_ya (netifaces Yet Another ver.)
 #
@@ -100,7 +100,9 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
             # save last one
             netifaces_ya.__interfaces.append(interface_name)
             netifaces_ya.__interfaces_info[interface_name] = a_interface
-        elif(netifaces_ya.__host_info["platform"] == 'nt'):
+        elif(netifaces_ya.__host_info["platform"] == 'nt' or
+             netifaces_ya.__host_info["platform"] == 'win32'
+             ):
             # chcp is for non-english system. this command will convert all message to english word.
             ipconfig_output = os.popen("chcp 437 | ipconfig /all").read()
 
@@ -163,7 +165,9 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
                 if(netifaces_ya.__interfaces_info[interface_name].has_key("status") and
                    netifaces_ya.__interfaces_info[interface_name]["status"] == "active"):
                     result.append(interface_name)
-        elif(netifaces_ya.__host_info["platform"] == 'nt'):
+        elif(netifaces_ya.__host_info["platform"] == 'nt' or
+             netifaces_ya.__host_info["platform"] == 'win32' 
+             ):
             for interface_name in interfaces:
                 # considering only in IPv4!
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
@@ -193,7 +197,9 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
                 if(interface_info['flags'].find('LOOPBACK') != -1): continue
                 if(interface_info.has_key('inet')): 
                     active_IPs.append(interface_info['inet'])
-        elif(netifaces_ya.__host_info["platform"] == 'nt'):
+        elif(netifaces_ya.__host_info["platform"] == 'nt' or
+             netifaces_ya.__host_info["platform"] == 'win32'
+             ):
             for interface_name in active_interfaces:
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 ip_value = interface_info["IPv4 Address"]
@@ -218,7 +224,8 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
         active_interfaces = netifaces_ya.get_active_interfaces()
         if(netifaces_ya.__host_info["platform"] == 'darwin'):
             pass
-        elif(netifaces_ya.__host_info["platform"] == 'nt'):
+        elif(netifaces_ya.__host_info["platform"] == 'nt' or
+             netifaces_ya.__host_info["platform"] == 'win32'):
             for interface_name in active_interfaces:
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 ip_value = interface_info["Subnet Mask"]
@@ -237,7 +244,8 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 if(interface_info.has_key('broadcast')):
                     active_broadcast_IPs.append(interface_info['broadcast'])
-        elif(netifaces_ya.__host_info["platform"] == 'nt'):
+        elif(netifaces_ya.__host_info["platform"] == 'nt' or
+             netifaces_ya.__host_info["platform"] == 'win32'):
             active_IPs = netifaces_ya.get_active_IPs()
             active_netmasks = netifaces_ya.get_active_netmasks()
             for i in range(0,len(active_IPs)):
@@ -271,7 +279,8 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 if(interface_info.has_key('ether')):
                     active_mac_addresses.append(interface_info['ether'].replace(':',separator))
-        elif(netifaces_ya.__host_info["platform"] == 'nt'):
+        elif(netifaces_ya.__host_info["platform"] == 'win32' or
+             netifaces_ya.__host_info["platform"] == 'nt'):
             for interface_name in active_interfaces:
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
                 if(interface_info.has_key('Physical Address')):
@@ -303,21 +312,33 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
 if __name__ == "__main__":
 
     # something like netifaces ...
+    print "- Interfaces :"
     print netifaces_ya.interfaces()  
 #    print netifaces_ya.ifaddresses('en0')  
     
     # Or, on our way!
     # We know that there's plenty of network interface NOT CONNECTED or NOT ACTIVATED.
     # So I just need to take active-things only.
+    print "\n- Active Interfaces :"
     print netifaces_ya.get_active_interfaces()
+
+    print "\n- Active IPs :"
     print netifaces_ya.get_active_IPs()
  
     # You wanna 'a piece' of something? Just use 'first_XXX' series functions.
+    print "\n- Active first IP :"
     print netifaces_ya.get_active_first_IP()
+
+    print "\n- Active first MAC address :"
     print netifaces_ya.get_active_first_mac_address('')    
+
+    print "\n- Active first interface :"
     print netifaces_ya.get_active_first_interface()
+
+    print "\n- Active first broadcast IP :"
     print netifaces_ya.get_active_first_broadcast_IP()
     
+    print "\n- All interface's information :"
     # If you want everything, get everything
     interfaces = netifaces_ya.get_interfaces()
     for interface_name in interfaces:
