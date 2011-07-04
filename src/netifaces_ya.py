@@ -212,10 +212,14 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
     @staticmethod
     def get_active_first_IP():
         active_IPs = netifaces_ya.get_active_IPs()
-        if(len(active_IPs) == 0):
+        if len(active_IPs) == 0:
             return ''
         else:
-            return active_IPs[0]
+            active_IP = active_IPs[0]
+            # if first ip is temporary one and there is another ip, choose it.
+            if active_IP.startswith('169.254') and len(active_IPs) > 1:
+                active_IP = active_IPs[1]
+            return active_IP
     
     # this method is for nt platform
     @staticmethod
@@ -223,6 +227,7 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
         active_netmasks = []
         active_interfaces = netifaces_ya.get_active_interfaces()
         if(netifaces_ya.__host_info["platform"] == 'darwin'):
+            # not implemeted
             pass
         elif(netifaces_ya.__host_info["platform"] == 'nt' or
              netifaces_ya.__host_info["platform"] == 'win32'):
@@ -267,7 +272,11 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
         if(len(active_broadcast_IPs) == 0):
             return ''
         else:
-            return active_broadcast_IPs[0]
+            active_broadcast_IP = active_broadcast_IPs[0]
+            # if first ip is temporary one and there is another ip, choose it.
+            if active_broadcast_IP.startswith('169.254') and len(active_broadcast_IPs) > 1:
+                active_broadcast_IP = active_broadcast_IPs[1]
+            return active_broadcast_IP
 
     @staticmethod
     def get_active_mac_addresses(separator = '-'):

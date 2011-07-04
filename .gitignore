@@ -1,0 +1,12 @@
+
+src/.DS_Store
+
+.DS_Store
+
+.settings/org.eclipse.core.resources.prefs
+
+.pydevproject
+
+.project
+
+build/lib/netifaces_ya.py
