@@ -26,8 +26,7 @@ Test on other unix-like platforms is needed. Would you give me a hand?
 
 
         
-import os
-import sys
+import os, sys, time
 
 class netifaces_ya:
     '''netifaces-like module provides network interface information.
@@ -49,6 +48,12 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
         if(len(netifaces_ya.__interfaces) == 0):
             netifaces_ya.fill_interfaces()
         return netifaces_ya.__interfaces_info[ifname]        
+
+    @staticmethod
+    def get_interface_infos():
+        if(len(netifaces_ya.__interfaces) == 0):
+            netifaces_ya.fill_interfaces()
+        return netifaces_ya.__interfaces_info
     
     @staticmethod
     def fill_interfaces():
@@ -103,9 +108,13 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
         elif(netifaces_ya.__host_info["platform"] == 'nt' or
              netifaces_ya.__host_info["platform"] == 'win32'
              ):
-            # chcp is for non-english system. this command will convert all message to english word.
-            ipconfig_output = os.popen("chcp 437 | ipconfig /all").read()
 
+            old_active_code_page = os.popen("chcp").read().split(" ")[-1]    # get CODE_PAGE from sentence like '활성 코드 페이지: 949'
+            temp = os.popen("chcp 437").read(); # mode change to english...
+            time.sleep(0.2)
+            
+            # chcp is for non-english system. this command will convert all message to english word.
+            ipconfig_output = os.popen("ipconfig /all").read()
             is_first_item = 0
             is_interface_name = 0
             config_key = None
@@ -155,6 +164,9 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
             # save last one
             netifaces_ya.__interfaces.append(interface_name)
             netifaces_ya.__interfaces_info[interface_name] = a_interface
+
+            # and revert old CODE_PAGE setting
+            ipconfig_output = os.popen("chcp " + old_active_code_page).read()
             
     @staticmethod
     def get_active_interfaces():
@@ -171,8 +183,15 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
             for interface_name in interfaces:
                 # considering only in IPv4!
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
-                if(interface_info.has_key("IPv4 Address") and 
-                   len(interface_info["IPv4 Address"]) !=0 and
+                if((interface_info.has_key("IPv4 Address") and 
+                   len(interface_info["IPv4 Address"]) !=0 ) and
+                   interface_info.has_key("Default Gateway") and 
+                   len(interface_info["Default Gateway"]) !=0):
+                    result.append(interface_name)
+                # in win2003 below, ipconfig display ipv4 as "IP Address"
+                interface_info = netifaces_ya.__interfaces_info[interface_name]
+                if((interface_info.has_key("IP Address") and 
+                   len(interface_info["IP Address"]) !=0 ) and
                    interface_info.has_key("Default Gateway") and 
                    len(interface_info["Default Gateway"]) !=0):
                     result.append(interface_name)
@@ -202,7 +221,10 @@ This returns interface name, IP, netmask, MAC address, and etc. This module use 
              ):
             for interface_name in active_interfaces:
                 interface_info = netifaces_ya.__interfaces_info[interface_name]
-                ip_value = interface_info["IPv4 Address"]
+                if interface_info.has_key("IPv4 Address"):
+                    ip_value = interface_info["IPv4 Address"]
+                else:
+                    ip_value = interface_info["IP Address"] # for windows below win2003 versions
                 if(type(ip_value) is list):
                     for ip in ip_value: active_IPs.append(ip)
                 else:
