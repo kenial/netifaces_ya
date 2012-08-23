@@ -1,7 +1,6 @@
-netifaces_ya (netifaces, yet another)
+netifaces_ya (netifaces, yet another) Moved to https://bitbucket.org/kenial/netifaces_ya, sorry!
 ====
 
-Moved to https://bitbucket.org/kenial/netifaces_ya , sorry!
 
 This pure python module is for providing network interface information instantly.
 Basically, similar to [netifaces](http://pypi.python.org/pypi/netifaces).
