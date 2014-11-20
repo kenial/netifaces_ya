@@ -1,0 +1,121 @@
+
+This network information sample was yielded from console utility(ifconfig, ipconfig)
+----------
+
+
+
+ sample 1 - ifconfig output (Mac OS X 10.6.7) :
+ ifconfig_output = """en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
+\tether 10:9a:dd:a8:b4:fc
+\tinet6 fe80::129a:ddff:fea8:b4fc%en0 prefixlen 64 scopeid 0x4
+\tinet 192.168.123.112 netmask 0xffffff00 broadcast 192.168.123.255
+\tmedia: autoselect
+\tstatus: active
+"""
+
+ sample of ipconfig_output (Win2008)
+ ipconfig_output = """Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : mocha
+   Primary Dns Suffix  . . . . . . . : 
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+
+Ethernet adapter 로컬 영역 연결:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet
+   Physical Address. . . . . . . . . : 3C-4A-A2-87-B0-52
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::81e1:6a37:38d3:6674%11(Preferred) 
+   IPv4 Address. . . . . . . . . . . : 192.33.172.211(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.255.224
+   IPv4 Address. . . . . . . . . . . : 192.33.172.220(Preferred) 
+   Subnet Mask . . . . . . . . . . . : 255.255.255.224
+   Default Gateway . . . . . . . . . : 192.33.172.193
+   DHCPv6 IAID . . . . . . . . . . . : 238832274
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-15-71-55-E1-3C-4A-92-77-B0-51
+   DNS Servers . . . . . . . . . . . : 164.124.101.2
+                                       210.43.2.73
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Tunnel adapter isatap.{50D25802-AA97-4969-BE99-3A1515DAA39E}:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft ISATAP Adapter
+   Physical Address. . . . . . . . . : 00-00-00-00-00-00-00-E0
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+
+Tunnel adapter 6TO4 Adapter:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Microsoft 6to4 Adapter
+   Physical Address. . . . . . . . . : 00-00-00-00-00-00-00-E0
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2002:da26:acdb::da26:acdb(Preferred) 
+   IPv6 Address. . . . . . . . . . . : 2002:da26:acdc::da26:acdc(Preferred) 
+   Default Gateway . . . . . . . . . : 2002:c058:6301::c058:6301
+   DNS Servers . . . . . . . . . . . : 164.124.101.2
+                                       210.43.2.73
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+
+Tunnel adapter Teredo Tunneling Pseudo-Interface:
+
+   Connection-specific DNS Suffix  . : 
+   Description . . . . . . . . . . . : Teredo Tunneling Pseudo-Interface
+   Physical Address. . . . . . . . . : 00-00-00-00-00-00-00-E0
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   IPv6 Address. . . . . . . . . . . : 2001:0:4137:9e76:10d1:3577:25d9:5324(Preferred) 
+   Link-local IPv6 Address . . . . . : fe80::10d1:3577:25d9:5324%14(Preferred) 
+   Default Gateway . . . . . . . . . : 
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+"""
+
+
+
+
+ sample 2 - ipconfig_output (Win2003)
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : BlackTan
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Unknown
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+
+Ethernet adapter VMware Network Adapter VMnet8:
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : VMware Virtual Ethernet Adapter for VMnet8
+   Physical Address. . . . . . . . . : 00-50-56-C0-00-08
+   DHCP Enabled. . . . . . . . . . . : No
+   IP Address. . . . . . . . . . . . : 192.168.81.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
+Ethernet adapter VMware Network Adapter VMnet1:
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : VMware Virtual Ethernet Adapter for VMnet1
+   Physical Address. . . . . . . . . : 00-50-56-C0-00-01
+   DHCP Enabled. . . . . . . . . . . : No
+   IP Address. . . . . . . . . . . . : 192.168.255.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
+Ethernet adapter 로컬 영역 연결:
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Atheros L2 Fast Ethernet 10/100 Base-T Controller
+   Physical Address. . . . . . . . . : 00-1E-8C-67-70-38
+   DHCP Enabled. . . . . . . . . . . : No
+   IP Address. . . . . . . . . . . . : 192.168.0.10
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.0.1
+   DNS Servers . . . . . . . . . . . : 164.124.101.2
